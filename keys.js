@@ -1,0 +1,1 @@
+exports.ny_key = process.env.NYT_KEY
