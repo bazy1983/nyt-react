@@ -1,0 +1,22 @@
+.bar {
+    width: 400px;
+    height: 3px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    overflow: hidden;
+    padding: 0px;
+}
+.reciprocating {
+    width: 150px;
+    height: 3px;
+    background: rgb(42, 112, 218);
+    animation: 1.5s reciprocate infinite
+}
+@keyframes reciprocate {
+    0%, 100% {
+        transform: translateX(-100px)
+    }
+    50% {
+        transform: translateX(360px)
+    }
+}

@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export default {
-    getArticles : function() {
-        return axios.get("/api/getArticles/:query");
+    getArticles : function(query) {
+        return axios.get("/api/getArticles/:" + query);
     }
 }
 

@@ -12,16 +12,22 @@ router.get("/getArticles/:query", (req, res) => {
         },
       }, function(err, response, body) {
           if(err) res.status(400).json({err : "can't search that!"})
+        
         body = JSON.parse(body);
-
         body.response.docs.forEach(element => {
+
+            let author = "", img = "";
+            
+            if (element.byline) author = element.byline.original
+            if (element.multimedia[0]) img = `https://static01.nyt.com/${element.multimedia[0].url}`;
+
             let oneArticle = {
-                id : element.id,
+                id : element._id,
                 headline : element.headline.main,
-                author : element.byline.original,
+                author : author,
                 snippet : element.snippet,
                 url : element.web_url,
-                img : `https://static01.nyt.com/${element.multimedia[0].url}`
+                img : img
             }
             allArticles.push(oneArticle)
         });
