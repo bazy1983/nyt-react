@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const request = require("request");
+const nytKey = require("../key").NYT_KEY || process.env.NYT_KEY;
 
 router.get("/getArticles/:query", (req, res) => {
     let allArticles = [];
     request.get({
         url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
         qs: {
-          'api-key': "e33c61265c6e46a09cef99429427d1b8",
+          'api-key': nytKey,
           'q': req.params.query
         },
       }, function(err, response, body) {

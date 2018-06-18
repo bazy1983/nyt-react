@@ -1,0 +1,8 @@
+.icon {
+    transform: scale(2.6)translateY(-3px);
+    margin: 0px 30px 0px 10px;
+}
+
+.siteName {
+    font-family: 'Abril Fatface', cursive;
+}
