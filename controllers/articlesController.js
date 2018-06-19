@@ -34,7 +34,7 @@ module.exports = {
         })
     },
     deleteArticleById : (req, res) => {
-        console.log(req.params.id)
+        // console.log(req.params.id)
         db.Article.remove({articleId : req.params.id})
         .then(() => {
             res.status(200).json({data : "okay"})
