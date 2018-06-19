@@ -11,7 +11,7 @@ router.get("/getArticles/:query", (req, res) => {
         savedIDs = results.map((article) =>{
             return article.articleId
         })
-        console.log(savedIDs)
+        // console.log(savedIDs)
     })
 
     request.get({

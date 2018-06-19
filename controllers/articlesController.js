@@ -29,10 +29,12 @@ module.exports = {
             res.json(data)
         })
         .catch((err) => {
+            console.log(err)
             res.status(400).json({err : "something went wrong"})
         })
     },
     deleteArticleById : (req, res) => {
+        console.log(req.params.id)
         db.Article.remove({articleId : req.params.id})
         .then(() => {
             res.status(200).json({data : "okay"})
@@ -40,6 +42,7 @@ module.exports = {
         .catch((err) => {
             console.log("error while deleting an article")
             console.log(err)
+            res.status(400).json({err : "something went wrong"})
         })
     }
 }

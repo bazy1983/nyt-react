@@ -11,7 +11,7 @@ export default {
         return axios.get("/api/db-articles")
     },
     deleteSavedArticle: function(id){
-        return axios.get("/api/db-delete-article/:" + id)
+        return axios.get("/api/db-delete-article/" + id)
     }
 }
 

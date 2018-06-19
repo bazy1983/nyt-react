@@ -20,7 +20,11 @@ class Card extends Component {
 
     deleteArticleHandler = (e) => {
         let articleID = e.target.attributes.getNamedItem("article-id").value;
-        console.log(articleID)
+        API.deleteSavedArticle(articleID)
+        .then(() => {
+            // window.location.reload()
+            document.getElementById(articleID).remove();
+        })
     }
 
     render() {
@@ -30,7 +34,7 @@ class Card extends Component {
                     this.props.articles.map((article) => {
                         return (
 
-                            <div className="col-md-4 my-3 text-center" key={article.articleId}>
+                            <div className="col-md-4 my-3 text-center" key={article.articleId} id = {article.articleId}>
                                 <div className="card cardWidth card-shadow">
                                     <img className="card-img-top" src={article.img || "./images/No_Image_Available.jpg"} alt="Card cap" height="200px" />
                                     <div className="card-body">
@@ -55,7 +59,7 @@ class Card extends Component {
                             </div>
                         )
                     })// end of map function
-                };
+                }
     </div>
 
         )
