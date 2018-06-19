@@ -39,6 +39,19 @@ class App extends Component {
     this.setState({ query: e.target.value })
   }
 
+  componentDidMount = () => {
+    this.setState({ loading: true })
+    API.getArticles("world cup")
+      .then((data) => {
+        this.setState({ loading: false, results: data.data })
+        // console.log(this.state.results)
+      })
+      .catch((err) => {
+        console.log("some error!")
+        console.log(err)
+      })
+  }
+
   render() {
     return (
       <div>

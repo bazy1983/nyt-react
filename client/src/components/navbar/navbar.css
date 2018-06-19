@@ -6,3 +6,8 @@
 .siteName {
     font-family: 'Abril Fatface', cursive;
 }
+
+.active {
+    font-weight: bold;
+    font-style: italic;
+}

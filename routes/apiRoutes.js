@@ -53,4 +53,12 @@ router.post("/save-article", (req, res)=>{
     dbControl.saveArticle(req,res)
 })
 
+router.get("/db-articles", (req, res) => {
+    dbControl.getAllArticles(req, res)
+})
+
+router.get("/db-delete-article/:id", (req, res) => {
+    dbControl.deleteArticleById(req, res)
+})
+
 module.exports = router;

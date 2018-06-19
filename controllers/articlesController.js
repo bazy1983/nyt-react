@@ -22,5 +22,24 @@ module.exports = {
             console.log("could not get articles to compare!");
             console.log(err)
         })
+    },
+    getAllArticles : (req, res) => {
+        db.Article.find({})
+        .then((data) => {
+            res.json(data)
+        })
+        .catch((err) => {
+            res.status(400).json({err : "something went wrong"})
+        })
+    },
+    deleteArticleById : (req, res) => {
+        db.Article.remove({articleId : req.params.id})
+        .then(() => {
+            res.status(200).json({data : "okay"})
+        })
+        .catch((err) => {
+            console.log("error while deleting an article")
+            console.log(err)
+        })
     }
 }
