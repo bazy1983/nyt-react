@@ -5,11 +5,13 @@ import "./card.css";
 class Card extends Component {
 
     saveArticleHandler = (e) => {
+        let thisDom = e.target;
         let articleData = e.target.attributes.getNamedItem("article-data").value;
         let articleJSON = JSON.parse(articleData);
         API.saveArticle(articleJSON)
         .then((data) =>{
-            console.log(data)
+            //console.log(data)
+            thisDom.style.color = "#f00"
         })
         .catch((err) =>{
             console.log(err)
@@ -34,10 +36,11 @@ class Card extends Component {
                                         <a href={article.url} target="_blank">
                                             <i className="far fa-file-alt"></i>
                                         </a>
-                                        <i className="far fa-heart"></i>
                                         <i className="fas fa-heart" 
                                         article-data={JSON.stringify(article)}
-                                        onClick = {this.saveArticleHandler}></i>
+                                        onClick = {this.saveArticleHandler}
+                                        style = {article.isSaved?{color:"#f00"}:{color:"#000"}}
+                                        ></i>
                                     </div>
                                 </div>
                             </div>
