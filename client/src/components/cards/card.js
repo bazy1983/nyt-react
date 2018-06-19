@@ -1,29 +1,53 @@
-import React from "react";
+import React, { Component } from "react";
+import API from "../../utils/API";
+import "./card.css";
 
-const Card = (props) => (
-    <div className="row">
-        {
-            props.articles.map((article) => {
-                return (
-    
-                    <div className="col-md-6" key = {article.id}>
-                        <div className="card" style={{ width: "18rem" }}>
-                            <img className="card-img-top" src="https://placehold.it/300/400" alt="Card cap" height="200px" />
-                            <div className="card-body">
-                                <h5 className="card-title">Card title</h5>
-                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+class Card extends Component {
+
+    saveArticleHandler = (e) => {
+        let articleData = e.target.attributes.getNamedItem("article-data").value;
+        let articleJSON = JSON.parse(articleData);
+        API.saveArticle(articleJSON)
+        .then((data) =>{
+            console.log(data)
+        })
+        .catch((err) =>{
+            console.log(err)
+        })
+    }
+
+    render() {
+        return (
+            <div className="row">
+                {
+                    this.props.articles.map((article) => {
+                        return (
+
+                            <div className="col-md-4 my-3 text-center" key={article.articleId}>
+                                <div className="card cardWidth">
+                                    <img className="card-img-top" src={article.img || "./images/No_Image_Available.jpg"} alt="Card cap" height="200px" />
+                                    <div className="card-body">
+                                        <h5 className="card-title">{article.headline}</h5>
+                                        <p className="card-text">{article.snippet}</p>
+                                    </div>
+                                    <div>
+                                        <a href={article.url} target="_blank">
+                                            <i className="far fa-file-alt"></i>
+                                        </a>
+                                        <i className="far fa-heart"></i>
+                                        <i className="fas fa-heart" 
+                                        article-data={JSON.stringify(article)}
+                                        onClick = {this.saveArticleHandler}></i>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <i className="far fa-file-alt"></i>
-                                <i className="far fa-heart"></i>
-                                <i className="fas fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                )
-            })// end of map function
-        };
+                        )
+                    })// end of map function
+                };
     </div>
-)
+
+        )
+    }
+}
 
 export default Card;

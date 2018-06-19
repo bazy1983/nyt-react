@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const articleSchema  = new Schema ({
-    title :{
+    headline :{
         type : String,
     },
     url : {
@@ -11,14 +11,15 @@ const articleSchema  = new Schema ({
     snippet : {
         type : String
     },
-    image : {
+    img : {
         type : String
     },
     author : {
         type : String
     },
-    published : {
-        type : Date
+    articleId : {
+        type : String,
+        unique: true
     }
 },{
     timestamps : true

@@ -1,8 +1,14 @@
+//importing React and router
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+//imorting main page component and partial components
 import Home from "./pages/home";
+import Saved from "./pages/saved";
 import Navbar from "./components/navbar";
 import './App.css';
+
+//importing api
 import API from "./utils/API";
 
 class App extends Component {
@@ -13,12 +19,13 @@ class App extends Component {
     loading: false
   }
 
+  //handle submit button click event 
   submitHandler = (e) => {
     e.preventDefault();
     this.setState({ loading: true })
     API.getArticles(this.state.query)
       .then((data) => {
-        this.setState({ loading: false, results : data.data })
+        this.setState({ loading: false, results: data.data })
         // console.log(this.state.results)
       })
       .catch((err) => {
@@ -28,7 +35,7 @@ class App extends Component {
   }
 
   inputChangeHandler = (e) => {
-    console.log(e.target.value)
+    //console.log(e.target.value)
     this.setState({ query: e.target.value })
   }
 
@@ -39,19 +46,22 @@ class App extends Component {
           search={this.submitHandler}
           inputChangeHandler={this.inputChangeHandler}
           filledInput={this.state.query}
+
         />
         <div className="container">
           <Router>
-            <Route
-              path="/"
-              render={(props) =>
-                <Home
-                  {...props}
-                  showText={this.state.query}
-                  loading={this.state.loading}
-                  articles = {this.state.results}
-                />}
-            />
+            <Switch>
+              <Route
+                exact path="/"
+                render={(props) =>
+                  <Home
+                    {...props}
+                    loading={this.state.loading}
+                    articles={this.state.results}
+                  />}
+              />
+              <Route exact path="/saved" component={Saved} />
+            </Switch>
           </Router>
         </div>
       </div>
