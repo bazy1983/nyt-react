@@ -35,7 +35,7 @@ router.get("/getArticles/:query", (req, res) => {
                 articleId : element._id,
                 headline : element.headline.main,
                 author : author,
-                snippet : element.snippet.substring(0, 200) + "...",
+                snippet : element.snippet.substring(0, 150) + "...",
                 url : element.web_url,
                 img : img,
                 isSaved : isSaved

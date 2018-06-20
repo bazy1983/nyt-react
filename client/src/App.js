@@ -1,6 +1,6 @@
 //importing React and router
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 //imorting main page component and partial components
 import Home from "./pages/home";
@@ -16,7 +16,8 @@ class App extends Component {
   state = {
     query: "",
     results: [],
-    loading: false
+    loading: false,
+    location : ""
   }
 
   //handle submit button click event 
@@ -55,12 +56,26 @@ class App extends Component {
   render() {
     return (
       <div>
+
         <Navbar
           search={this.submitHandler}
           inputChangeHandler={this.inputChangeHandler}
           filledInput={this.state.query}
+        >
+          {/* <Router>
+            <ul className="navbar-nav mr-auto">
+              <li>
+                <Link to="/" className={window.location.pathname === "/" ? "nav-item active" : "nav-item"}>Home</Link>
 
-        />
+              </li>
+              <li>
+
+                <Link to="/saved" onClick = {window.location.reload} className={window.location.pathname === "/saved" ? "nav-item active" : "nav-item"}>Saved</Link>
+              </li>
+            </ul>
+          </Router> */}
+        </Navbar>
+
         <div className="container">
           <Router>
             <Switch>

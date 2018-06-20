@@ -43,7 +43,7 @@ class Card extends Component {
                                     </div>
                                     <div>
                                         <a href={article.url} target="_blank">
-                                            <i className="far fa-file-alt mx-2 h4"></i>
+                                            <i className="fas fa-link mx-2 h4"></i>
                                         </a>
                                         {window.location.pathname === "/" ?
                                             <i className="fas fa-heart mx-2 h4"
