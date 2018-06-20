@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const request = require("request");
-const nytKey = require("../key").NYT_KEY || process.env.NYT_KEY;
+const nytKey = "e33c61265c6e46a09cef99429427d1b8";
 const dbControl = require("../controllers/articlesController");
 
 router.get("/getArticles/:query", (req, res) => {
