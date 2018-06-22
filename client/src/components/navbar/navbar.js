@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+// import { BrowserRouter as Router, Link } from 'react-router-dom'
 import "./navbar.css";
 
 // const Navbar = (props) => (
@@ -56,20 +56,19 @@ class Navbar extends React.Component {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
-                    <ul className="navbar-nav mr-auto"> 
-                        <li className={window.location.pathname === "/" ? "nav-item active" : "nav-item"}>
+                    {/* <ul className="navbar-nav mr-auto">  */}
+                        {/* <li className={window.location.pathname === "/" ? "nav-item active" : "nav-item"}>
                             <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
                         </li>
                         <li className={window.location.pathname === "/saved" ? "nav-item active" : "nav-item"}>
                             <a className="nav-link" href="/saved">Saved</a>
-                        </li>
+                        </li> */}
+                        
+                    {/* </ul> */}
+                        {this.props.children}
 
-                        {/* {this.props.children} */}
-
-                    </ul>
-
-                    {window.location.pathname === "/"
-                    ?
+                    {/* {window.location.pathname === "/" */}
+                    
                     <form className="form-inline my-2 my-lg-0">
                         <input className="form-control mr-sm-2" type="search" placeholder="Search Articles" aria-label="Search" onChange={this.props.inputChangeHandler} />
                         <button className="btn btn-outline-primary my-2 my-sm-0" type="submit"
@@ -78,7 +77,7 @@ class Navbar extends React.Component {
                             disabled={!this.props.filledInput}
                         >Search</button>
                     </form>
-                    :null}
+                   
                 </div>
             </nav>
         )

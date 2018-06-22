@@ -1,11 +1,12 @@
 //importing React and router
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 //imorting main page component and partial components
 import Home from "./pages/home";
 import Saved from "./pages/saved";
 import Navbar from "./components/navbar";
+// import Wrapper from "./components/wrapper"
 import './App.css';
 
 //importing api
@@ -17,7 +18,8 @@ class App extends Component {
     query: "",
     results: [],
     loading: false,
-    location : ""
+    location: "",
+    url : "/"
   }
 
   //handle submit button click event 
@@ -53,32 +55,34 @@ class App extends Component {
       })
   }
 
+  urlHandler = (url) => {
+    this.setState({url : url})
+  }
+
   render() {
     return (
-      <div>
+      <Router>
+        <div>
+          <Navbar
+            search={this.submitHandler}
+            inputChangeHandler={this.inputChangeHandler}
+            filledInput={this.state.query}
+          >
 
-        <Navbar
-          search={this.submitHandler}
-          inputChangeHandler={this.inputChangeHandler}
-          filledInput={this.state.query}
-        >
-          {/* <Router>
             <ul className="navbar-nav mr-auto">
               <li>
-                <Link to="/" className={window.location.pathname === "/" ? "nav-item active" : "nav-item"}>Home</Link>
+                <Link to="/" onClick = {this.urlHandler.bind(this, "/")} className={window.location.pathname === "/" ? "nav-item active" : "nav-item"}>Home</Link>
 
               </li>
               <li>
-
-                <Link to="/saved" onClick = {window.location.reload} className={window.location.pathname === "/saved" ? "nav-item active" : "nav-item"}>Saved</Link>
+                <Link to="/saved" onClick = {this.urlHandler.bind(this, "/saved")} className={window.location.pathname === "/saved" ? "nav-item active" : "nav-item"}>Saved</Link>
               </li>
             </ul>
-          </Router> */}
-        </Navbar>
 
-        <div className="container">
-          <Router>
-            <Switch>
+          </Navbar>
+
+          <div className="container">
+
               <Route
                 exact path="/"
                 render={(props) =>
@@ -89,10 +93,10 @@ class App extends Component {
                   />}
               />
               <Route exact path="/saved" component={Saved} />
-            </Switch>
-          </Router>
+
+          </div>
         </div>
-      </div>
+      </Router>
     );
   };
 };

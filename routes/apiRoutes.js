@@ -33,9 +33,9 @@ router.get("/getArticles/:query", (req, res) => {
             if (savedIDs.includes(element._id)) isSaved = true
             let oneArticle = {
                 articleId : element._id,
-                headline : element.headline.main,
+                headline : element.headline.main.substring(0, 50) + "...",
                 author : author,
-                snippet : element.snippet.substring(0, 150) + "...",
+                snippet : element.snippet.substring(0, 100) + "...",
                 url : element.web_url,
                 img : img,
                 isSaved : isSaved

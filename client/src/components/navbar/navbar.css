@@ -7,6 +7,13 @@
     font-family: 'Abril Fatface', cursive;
 }
 
+.nav-item {
+    padding: 0px 10px;
+    font-size: 18px;
+    line-height: 15px
+  }
+  
+
 .active {
     font-weight: bold;
     font-style: italic;
