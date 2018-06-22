@@ -28,14 +28,14 @@ router.get("/getArticles/:query", (req, res) => {
 
             let author = "", img = "", isSaved = false;
             
-            if (element.byline) author = element.byline.original
+            if (element.byline) author = element.byline.original;
             if (element.multimedia[0]) img = `https://static01.nyt.com/${element.multimedia[0].url}`;
             if (savedIDs.includes(element._id)) isSaved = true
             let oneArticle = {
                 articleId : element._id,
                 headline : element.headline.main.substring(0, 50) + "...",
                 author : author,
-                snippet : element.snippet.substring(0, 100) + "...",
+                snippet : (element.snippet.indexOf("<p>") != -1? element.snippet.substring(3, 53) + "...":element.snippet.substring(0, 50) + "..."),
                 url : element.web_url,
                 img : img,
                 isSaved : isSaved
